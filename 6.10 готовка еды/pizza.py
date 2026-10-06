@@ -1,3 +1,4 @@
+#by Yaromir Knelc
 YES = {"да", "д", "yes", "y", "1"}
 NO = {"нет", "н", "no", "n", "2"}
 
