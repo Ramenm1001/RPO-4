@@ -1,5 +1,6 @@
 import random
 
+
 # параметры
 food = 100
 dirt = 0
