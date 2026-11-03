@@ -42,8 +42,8 @@ while True:
         eda = ""
         while eda not in ["1", "2"]:
             eda = input("=")
-        eda = food_menu[eda]        
-        
+        eda = food_menu[eda]
+
         rnd = random.randint(1, 100)
         if 1 <= rnd <= 40:
             food = min(food + 60, 100)
@@ -59,6 +59,13 @@ while True:
     if act == "wash":
         dirt = 0
         print(f"{name} помыт")
+
+
+    # **********************
+
+    if food == 0:
+        print(f"{name} погиб в бою с голодом")
+        break
 
 
 
