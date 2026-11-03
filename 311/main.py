@@ -4,6 +4,8 @@ import random
 food = 100
 dirt = 0
 
+food_menu = {"1": "пицца",
+             "2": "брокколи"}
 name = input("Имя вашего питомца:")
 
 while True:
@@ -34,16 +36,24 @@ while True:
     while act not in ["feed", "wash"]:
         act = input("=")
     if act == "feed":
+        print("чем будем кормить?")
+        print("1 - пицца")
+        print("2 - брокколи")
+        eda = ""
+        while eda not in ["1", "2"]:
+            eda = input("=")
+        eda = food_menu[eda]        
+        
         rnd = random.randint(1, 100)
         if 1 <= rnd <= 40:
             food = min(food + 60, 100)
-            print(f"{name} поел")
+            print(f"{name} поел {eda}")
         elif 40 < rnd <= 80:
             food = min(food + 60, 100)
             print(f"{name} поел, но немного запачкался")
             dirt = min(dirt + random.randint(1, 40), 100)
         else:
-            print(f"{name} надел кашу на голову")
+            print(f"{name} надел {eda} на голову")
             dirt = min(dirt + random.randint(50, 80), 100)
 
     if act == "wash":
