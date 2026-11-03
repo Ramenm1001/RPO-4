@@ -46,6 +46,13 @@ while True:
         print(f"\n{name} заскучал без вашего внимания.")
         happiness = max(happiness - 20, 0)
 
+    if act == 5:
+        #Скучно питомцу
+        print(name, "скучает")
+        happiness -= random.randint(20, 55)
+        if happiness < 0:
+            happiness = 0
+
     # интерфейс
     print("-" * 30)
     print(f"Имя: {name} | Прожито дней: {days_alive}")
