@@ -1,9 +1,9 @@
 import random
 
-
 # параметры
 food = 100
 dirt = 0
+fun = 100
 
 food_menu = {"1": "пицца",
              "2": "брокколи"}
@@ -11,10 +11,10 @@ name = input("Имя вашего питомца:")
 
 while True:
     # ход тамагочи
-    act = random.randint(1, 3) # 33%
+    act = random.randint(1, 3)  # 33%
     if act == 1:
         # голод
-        food -= random.randint(10, 30) # от 10 до 30
+        food -= random.randint(10, 30)  # от 10 до 30
         if food < 0:
             food = 0
 
@@ -26,15 +26,24 @@ while True:
             dirt = 100
         # dirt = min(dirt + 50, 100)
 
+    if act == 3:
+        # Скучно питомцу
+        print(name, "скучает")
+        fun -= random.randint(20, 55)
+        if fun < 0:
+            fun = 0
+
     # интерфейс
     print(f"{name}")
     print(f"голод: {food}")
     print(f"грязь: {dirt}")
+    print(f"счастье: {fun}")
 
     print("feed - кормить")
     print("wash - мыть питомца")
+    print("play - пойти поиграть")
     act = ""
-    while act not in ["feed", "wash"]:
+    while act not in ["feed", "wash", "play"]:
         act = input("=")
     if act == "feed":
         print("чем будем кормить?")
@@ -61,13 +70,12 @@ while True:
         dirt = 0
         print(f"{name} помыт")
 
+    if act == "play":
+        fun += random.randint(25, 55)
+        print(f"поиграл с {name}")
 
     # **********************
 
     if food == 0:
         print(f"{name} погиб в бою с голодом")
         break
-
-
-
-
