@@ -72,7 +72,7 @@ while True:
         print(f"{name} помыт")
 
     if act == "play":
-        fun += 25 or 55
+        fun += random.randint(25, 55)
         print(f"поиграл с {name}")
 
 
