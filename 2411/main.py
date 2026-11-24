@@ -1,12 +1,18 @@
-sp = [11, 22, True, "qwerty"]
-#      0   1   2   3
-# sp = list()
-print(sp)
-sp.append(123) # добавление в конец
-print(sp)
-sp.remove(22) # удаление по значению
-print(sp)
-x = sp.pop() # удаление по индексу
-print(sp, x)
-sp[0] += 10 # обращение к элементу
-print(sp)
+import random
+
+pers = [["Не Магомед", 3], ["Вася", 1],
+        ["Бочарников Александр", 3], ["Сергей Шарант", 3]]
+
+while len(pers) > 1:
+    p1, p2 = random.sample(pers, 2)
+    extra1 = random.randint(1, 3)
+    extra2 = random.randint(1, 3)
+    if p1[1] + extra1 > p2[1] + extra2:
+        pers.remove(p2)
+        print(p1[0], "победил", p2[0])
+    else:
+        pers.remove(p1)
+        print(p1[0], "победил", p2[0])
+
+print(pers[0][0], "победил")
+
