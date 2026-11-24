@@ -107,3 +107,4 @@ while True:
             print(f"{name} слишком активно играл в {igrushka} и залез под шкаф за грязью")
         else:
             print(f"{name} сломал {igrushka} и загрустил")
+
