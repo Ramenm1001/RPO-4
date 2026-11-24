@@ -6,15 +6,26 @@ dirt = 0
 energy = 100
 happiness = 100  # Добавлено: счастье
 days_alive = 0  # Добавлено: счетчик прожитых дней
+age = 0
 
 food_menu = {"1": "пицца", "2": "брокколи"}
 name = input("Имя вашего питомца: ")
 
+play_menu = {"1": "мяч",
+             "2": "лазерная указка"}
+
 while True:
     days_alive += 1  # Питомец прожил еще один день
-
+    age += 1
     # ход тамагочи (случайные события в начале круга)
     act = random.randint(1, 5)  # Расширили пул событий
+
+    if age < 5:
+        stage = "Малыш"
+    elif age < 15:
+        stage = "Взрослый"
+    else:
+        stage = "Старейшина"
 
     if act == 1:
         # голод
@@ -46,13 +57,6 @@ while True:
         print(f"\n{name} заскучал без вашего внимания.")
         happiness = max(happiness - 20, 0)
 
-    if act == 5:
-        #Скучно питомцу
-        print(name, "скучает")
-        happiness -= random.randint(20, 55)
-        if happiness < 0:
-            happiness = 0
-
     # интерфейс
     print("-" * 30)
     print(f"Имя: {name} | Прожито дней: {days_alive}")
@@ -60,6 +64,8 @@ while True:
     print(f"Грязь: {dirt}/100")
     print(f"Энергия: {energy}/100")
     print(f"Счастье: {happiness}/100")  # Выводим счастье в интерфейс
+    print(f"стадия: {stage}")
+    print(f"возраст: {age}")
     print("-" * 30)
 
     print("feed  - кормить")
@@ -106,11 +112,27 @@ while True:
         if energy < 20:
             print(f"{name} слишком устал, чтобы играть! Сначала уложите его спать.")
         else:
-            print(f"Вы поиграли с {name} в мяч!")
             energy = max(energy - 25, 0)
-            dirt = min(dirt + 15, 100)
-            food = max(food - 15, 0)
             happiness = min(happiness + 35, 100)  # Игры сильно поднимают счастье
+            print("во что будем играть?")
+            print("1 - мяч")
+            print("2 - лазерная указка")
+            igrushka = ""
+            while igrushka not in ["1", "2"]:
+                igrushka = input("=")
+            igrushka = play_menu[igrushka]
+
+            rnd = random.randint(1, 100)
+            if 1 <= rnd <= 50:
+                food = max(food - 15, 0)
+                print(f"{name} весело побегал за инструментом {igrushka}")
+            elif 50 < rnd <= 85:
+                food = max(food - 20, 0)
+                dirt = min(dirt + 30, 100)
+                print(f"{name} слишком активно играл в {igrushka} и залез под шкаф за грязью")
+            else:
+                print(f"{name} сломал {igrushka} и загрустил")
+                happiness = min(happiness - 50, 100)
 
     # МЕХАНИКА: Сон
     elif user_act == "sleep":
@@ -135,7 +157,15 @@ while True:
         print(f"Вы смогли заботиться о нем рекордное количество дней: {days_alive}!")
         break
 
+    if dirt == 100:
+        print(f"{name} зарос грязью и сбежал на помойку")
+        break
+
+    if age >= 25:
+        print(f"{name} прожил долгую жизнь и ушел на пенсию")
+        break
 
 
 
-
+# print(, end=" ")
+# print(, end="\n")
